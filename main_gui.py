@@ -14,9 +14,11 @@ from local_database import db_operate
 from utils import obtain_sql, retrieval_related_table, execute_sql
 from prompt import query_template, chatbot_prompt
 
+MODEL_PATH = os.environ.get('MODEL_PATH', '/mnt/user2/workspace/Aug/model/chatglm3-6b')
+TOKENIZER_PATH = os.environ.get("TOKENIZER_PATH", MODEL_PATH)
 
-tokenizer = AutoTokenizer.from_pretrained("./ChatGlm-6b", trust_remote_code=True)
-model = AutoModel.from_pretrained("./ChatGlm-6b", trust_remote_code=True).half().cuda()
+tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)
+model = AutoModel.from_pretrained(MODEL_PATH, trust_remote_code=True).half().cuda()
 model = model.eval()
 
 
